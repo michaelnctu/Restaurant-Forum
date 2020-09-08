@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const port = 3000
 const flash = require('connect-flash')
 const session = require('express-session')
+const passport = require('passport')
 
 app.engine('handlebars', handlebars())
 app.set('view engine', 'handlebars')
@@ -16,8 +17,12 @@ app.use(flash())
 app.use((req, res, next) => {
   res.locals.success_message = req.flash('success_messages')
   res.locals.error_messages = req.flash('error_messages')
+  res.locals.user = req.user
   next()
 })
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.listen(port, () => {
   console.log(`Example all listening on port ${port}!`)
