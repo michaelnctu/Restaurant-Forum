@@ -28,4 +28,4 @@ app.listen(port, () => {
   console.log(`Example all listening on port ${port}!`)
 })
 
-require('./routes')(app)
+require('./routes')(app, passport) // 把 passport 傳入 routes
