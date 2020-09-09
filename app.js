@@ -6,6 +6,10 @@ const port = 3000
 const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('passport')
+const methodOverride = require('method-override')
+
+app.use(methodOverride('_method'))
+
 
 app.engine('handlebars', handlebars())
 app.set('view engine', 'handlebars')

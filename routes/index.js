@@ -14,10 +14,12 @@ module.exports = (app, passport) => {
   }
   const authenticatedAdmin = (req, res, next) => {
     if (req.isAuthenticated()) {
+
       if (req.user.isAdmin) {
         console.log("執行admin")
         return next()
       }
+
       return res.redirect('/')
     }
     res.redirect('/signin')
@@ -31,9 +33,15 @@ module.exports = (app, passport) => {
 
   app.get('/admin', authenticatedAdmin, (req, res) => res.redirect('/admin/restaurants'))
 
+
   app.get('/admin/restaurants', authenticatedAdmin, adminController.getRestaurants)
 
   app.get('/admin/restaurants/:id', authenticatedAdmin, adminController.getRestaurant)
+
+
+  app.get('/admin/restaurants/:id/edit', authenticatedAdmin, adminController.editRestaurant)
+
+  app.put('/admin/restaurants/:id', authenticatedAdmin, adminController.putRestaurant)
 
 
   app.get('/admin/restaurants/create', authenticatedAdmin, adminController.createRestaurant)
