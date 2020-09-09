@@ -48,6 +48,8 @@ module.exports = (app, passport) => {
 
   app.post('/admin/restaurants', authenticatedAdmin, adminController.postRestaurant)
 
+  app.delete('/admin/restaurants/:id', authenticatedAdmin, adminController.deleteRestaurant)
+
 
   app.get('/signup', userController.signUpPage) //負責 render 註冊的頁面
 
