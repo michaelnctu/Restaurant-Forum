@@ -1,5 +1,5 @@
 const restController = require('../controllers/restController.js')
-const adminController = require('../controllers/restController.js')
+const adminController = require('../controllers/adminController.js')
 const userController = require('../controllers/userController.js')
 const passport = require('../config/passport.js')
 
@@ -30,6 +30,11 @@ module.exports = (app, passport) => {
 
   app.get('/admin/restaurants', authenticatedAdmin, adminController.getRestaurants)
 
+  app.get('/admin/restaurants/create', authenticatedAdmin, adminController.createRestaurant)
+
+  app.post('/admin/restaurants', authenticatedAdmin, adminController.postRestaurant)
+
+
   app.get('/signup', userController.signUpPage) //負責 render 註冊的頁面
 
   app.post('/signup', userController.signUp)  //signUp：負責實際處理註冊的行為
@@ -39,6 +44,7 @@ module.exports = (app, passport) => {
   app.post('/signin', passport.authenticate('local', { failureRedirect: '/signin', faulureFlash: true }), userController.signIn)
 
   app.get('/logout', userController.logout)
+
 
 
 }
