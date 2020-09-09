@@ -6,6 +6,7 @@ const passport = require('../config/passport.js')
 module.exports = (app, passport) => {
 
   const authenticated = (req, res, next) => {
+    console.log(req.user)
     if (req.isAuthenticated()) {
       return next()
     }
@@ -13,7 +14,10 @@ module.exports = (app, passport) => {
   }
   const authenticatedAdmin = (req, res, next) => {
     if (req.isAuthenticated()) {
-      if (req.user.isAdmin) { return next() }
+      if (req.user.isAdmin) {
+        console.log("執行admin")
+        return next()
+      }
       return res.redirect('/')
     }
     res.redirect('/signin')
@@ -25,10 +29,12 @@ module.exports = (app, passport) => {
 
   app.get('/restaurants', authenticated, restController.getRestaurants)
 
-
   app.get('/admin', authenticatedAdmin, (req, res) => res.redirect('/admin/restaurants'))
 
   app.get('/admin/restaurants', authenticatedAdmin, adminController.getRestaurants)
+
+  // app.get('/admin/restaurants/:id', authenticatedAdmin, adminController.getRestaurant)
+
 
   app.get('/admin/restaurants/create', authenticatedAdmin, adminController.createRestaurant)
 

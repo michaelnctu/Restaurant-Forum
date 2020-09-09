@@ -1,4 +1,4 @@
-const db = ('../models')
+const db = require('../models')
 const Restaurant = db.Restaurant
 
 
@@ -6,6 +6,14 @@ const adminController = {
   getRestaurants: (req, res) => {
     return Restaurant.findAll({ raw: true }).then(restaurants => {
       return res.render('admin/restaurants', { restaurants: restaurants })
+    })
+  },
+
+  getRestaurant: (req, res) => {
+    return Restaurant.findByPk(req.params.id, { raw: true }).then(restaurant => {  //{raw: true} 轉換成 JS 原生物件
+      return res.render('admin/restaurant', {
+        restaurant: restaurant
+      })
     })
   },
 
