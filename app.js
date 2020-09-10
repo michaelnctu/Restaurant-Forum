@@ -28,6 +28,8 @@ app.use((req, res, next) => {
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use('/upload', express.static(__dirname + '/upload'))
+
 app.listen(port, () => {
   console.log(`Example all listening on port ${port}!`)
 })
