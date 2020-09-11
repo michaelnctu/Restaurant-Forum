@@ -12,13 +12,15 @@ const Handlebars = require('handlebars')
 
 const flash = require('connect-flash')
 const session = require('express-session')
-const passport = require('passport')
+const passport = require('./config/passport')
 const methodOverride = require('method-override')
 
 app.use(methodOverride('_method'))
 
 
-app.engine('handlebars', handlebars())
+app.engine('handlebars', handlebars({ defaultLayout: 'main' }))
+app.set('view engine', 'hbs')
+
 app.set('view engine', 'handlebars')
 app.use(bodyParser.urlencoded({ extended: true }))
 

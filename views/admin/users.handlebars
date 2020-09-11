@@ -1,4 +1,10 @@
-<h1>餐廳後台</h1>
+<h1>使用者後台</h1>
+
+<a href='/admin/restaurants'>Restaurants</a> | <a href='/admin/users'>Users</a>
+
+<br />
+<br />
+
 
 
 <table class="table">
@@ -21,7 +27,7 @@
       <td>{{adminChecker this.isAdmin}}</td>
       <td>
         <form action="/admin/users/{{this.id}}?_method=PUT" method="POST" style="display: inline;">
-          <button type="submit" class="btn btn-link" name="isAdmin" value="{{this.isAdmin}}">set as
+          <button type="submit" class="btn btn-link">set as
             {{ revadminChecker this.isAdmin}} </button>
         </form>
       </td>

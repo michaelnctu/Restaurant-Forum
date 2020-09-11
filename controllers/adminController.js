@@ -132,21 +132,21 @@ const adminController = {
     return User.findAll({ raw: true, nest: true }).then(users => {
       return res.render('admin/users', { users: users })
     })
+      .catch(err => console.log(err))
   },
 
   putUsers: (req, res) => {
-    const isAdmin = req.body.isAdmin
-    console.log("現在user是", isAdmin)
-    console.log("我要改變", !isAdmin)
 
     return User.findByPk(req.params.id)
       .then(user => {
         user.update({
-          isAdmin: !isAdmin
+          isAdmin: !user.isAdmin
         })
       }).then((user) => {
+        req.flash('success_messages', 'user was successfully updated')
         res.redirect('/admin/users')
       })
+      .catch(err => console.log(err))
 
   }
 
