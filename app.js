@@ -2,7 +2,14 @@ const express = require('express')
 const app = express()
 const handlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
-const port = 3000
+const port = process.env.PORT || 3000
+const Handlebars = require('handlebars')
+
+// if (process.env.NODE_ENV !== 'production') {
+//   require('dotenv').config()
+// }
+
+
 const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('passport')
@@ -32,6 +39,16 @@ app.use('/upload', express.static(__dirname + '/upload'))
 
 app.listen(port, () => {
   console.log(`Example all listening on port ${port}!`)
+})
+
+Handlebars.registerHelper('adminChecker', function (value) {
+  if (value) { return 'admin' }
+  else { return 'user' }
+})
+
+Handlebars.registerHelper('revadminChecker', function (value) {
+  if (!value) { return 'admin' }
+  else { return 'user' }
 })
 
 require('./routes')(app, passport) // 把 passport 傳入 routes
