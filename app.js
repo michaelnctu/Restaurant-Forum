@@ -43,17 +43,17 @@ app.listen(port, () => {
   console.log(`Example all listening on port ${port}!`)
 })
 
-Handlebars.registerHelper('adminChecker', function (value) {
+Handlebars.registerHelper('adminChecker', function (value) {   //判斷是user或是admin 後傳到handlebars
   if (value) { return 'admin' }
   else { return 'user' }
 })
 
-Handlebars.registerHelper('revadminChecker', function (value) {
+Handlebars.registerHelper('revadminChecker', function (value) {     // handlebars顯示要變換的東西
   if (!value) { return 'admin' }
   else { return 'user' }
 })
 
-Handlebars.registerHelper('seflWareness', function (v1, v2) {
+Handlebars.registerHelper('seflWareness', function (v1, v2) { //提醒當下的登入情況
   if (v1 === v2) { return '(yourself)' }
 })
 

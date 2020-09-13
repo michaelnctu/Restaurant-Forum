@@ -128,9 +128,11 @@ const adminController = {
       })
   },
 
+  //A17作業
+
   getUsers: (req, res) => {
     return User.findAll({ raw: true, nest: true }).then(users => {
-      return res.render('admin/users', { users: users })
+      return res.render('admin/users', { users })
     })
       .catch(err => console.log(err))
   },
@@ -138,7 +140,7 @@ const adminController = {
   putUsers: (req, res) => {
     console.log(req.user)
 
-    return User.findByPk(req.params.id)
+    return User.findByPk(req.params.id)  //找出表單送出的user
       .then(user => {
         user.update({
           isAdmin: !user.isAdmin
