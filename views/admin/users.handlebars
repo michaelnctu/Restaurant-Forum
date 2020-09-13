@@ -6,7 +6,6 @@
 <br />
 
 
-
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -21,16 +20,27 @@
   <tbody>
     {{#each users}}
 
+
     <tr>
       <th scope="row">{{this.id}}</th>
-      <td>{{this.email}}</td>
+      <td>{{this.email}} {{seflWareness this.email ../user.email}}</td>
       <td>{{adminChecker this.isAdmin}}</td>
       <td>
         <form action="/admin/users/{{this.id}}?_method=PUT" method="POST" style="display: inline;">
-          <button type="submit" class="btn btn-link">set as
-            {{ revadminChecker this.isAdmin}} </button>
+
+          <button type="submit" class="btn btn-link">
+            set as {{ revadminChecker this.isAdmin}}
+          </button>
+
+        </form>
+
         </form>
       </td>
+
+
+
+
+
 
     </tr>
     {{/each}}

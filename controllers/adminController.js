@@ -136,6 +136,7 @@ const adminController = {
   },
 
   putUsers: (req, res) => {
+    console.log(req.user)
 
     return User.findByPk(req.params.id)
       .then(user => {

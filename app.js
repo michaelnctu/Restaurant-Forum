@@ -53,4 +53,18 @@ Handlebars.registerHelper('revadminChecker', function (value) {
   else { return 'user' }
 })
 
+Handlebars.registerHelper('seflWareness', function (v1, v2) {
+  if (v1 === v2) { return '(yourself)' }
+})
+
+Handlebars.registerHelper('modalPop', function (admin) {
+  if (admin) {
+    return ` "button" class="btn btn-link" data-toggle="modal" data-target="#exampleModalCenter" `
+
+  } else { return `"sbumit" ` }
+
+
+})
+
 require('./routes')(app, passport) // 把 passport 傳入 routes
+
