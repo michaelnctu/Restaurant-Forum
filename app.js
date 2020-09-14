@@ -59,7 +59,7 @@ Handlebars.registerHelper('seflWareness', function (v1, v2) { //提醒當下的�
 
 Handlebars.registerHelper('modalPop', function (admin) {
   if (admin) {
-    return ` "button" class="btn btn-link" data-toggle="modal" data-target="#exampleModalCenter" `
+    return ` "button" class="btn btn-link" data-toggle="modal" data-target="#example{}" `
 
   } else { return `"sbumit" ` }
 
