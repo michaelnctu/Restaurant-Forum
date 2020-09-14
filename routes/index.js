@@ -54,6 +54,8 @@ module.exports = (app, passport) => {
 
   app.get('/admin/categories', authenticatedAdmin, categoryController.getCategories)
 
+  app.post('/admin/categories', authenticatedAdmin, categoryController.postCategory)
+
 
   // 修改後台新增餐廳的路由
   app.post('/admin/restaurants', authenticatedAdmin, upload.single('image'), adminController.postRestaurant)
