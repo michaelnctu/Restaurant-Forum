@@ -16,7 +16,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 
-app.engine('handlebars', handlebars({ defaultLayout: 'main', handlebars: allowInsecurePrototypeAccess(Handlebars) }))
+app.engine('handlebars', handlebars
+  ({
+    defaultLayout: 'main',
+    handlebars: allowInsecurePrototypeAccess(Handlebars),
+    helpers: require('./config/handlebars-helpers')
+  }))
+
 app.set('view engine', 'handlebars')
 
 app.use(bodyParser.urlencoded({ extended: true }))
