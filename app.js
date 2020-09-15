@@ -8,7 +8,8 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('./config/passport')
 const methodOverride = require('method-override')
-const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
+
+// const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -19,7 +20,7 @@ if (process.env.NODE_ENV !== 'production') {
 app.engine('handlebars', handlebars
   ({
     defaultLayout: 'main',
-    handlebars: allowInsecurePrototypeAccess(Handlebars),
+    // handlebars: allowInsecurePrototypeAccess(Handlebars),
     helpers: require('./config/handlebars-helpers')
   }))
 
