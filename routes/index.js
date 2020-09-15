@@ -34,6 +34,8 @@ module.exports = (app, passport) => {
 
   app.get('/restaurants', authenticated, restController.getRestaurants)
 
+  app.get('/restaurants/:id', authenticated, restController.getRestaurant)
+
   app.get('/admin', authenticatedAdmin, (req, res) => res.redirect('/admin/restaurants'))
 
   app.get('/admin/users', authenticatedAdmin, adminController.getUsers)
