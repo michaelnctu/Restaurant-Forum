@@ -40,7 +40,6 @@ module.exports = (app, passport) => {
 
   app.put('/admin/users/:id', authenticatedAdmin, adminController.putUsers)
 
-
   app.get('/admin/restaurants', authenticatedAdmin, adminController.getRestaurants)
 
   app.get('/admin/restaurants/create', authenticatedAdmin, adminController.createRestaurant)
@@ -54,13 +53,21 @@ module.exports = (app, passport) => {
 
   app.get('/admin/categories', authenticatedAdmin, categoryController.getCategories)
 
-  app.post('/admin/categories', authenticatedAdmin, categoryController.postCategory)
+  app.get('/admin/categories/:id', authenticatedAdmin, categoryController.getCategories)
+
+  app.put('/admin/categories/:id', authenticatedAdmin, categoryController.putCategory)
+
+  // app.post('/admin/categories', authenticatedAdmin, categoryController.postCategory)
+
+
 
 
   // 修改後台新增餐廳的路由
   app.post('/admin/restaurants', authenticatedAdmin, upload.single('image'), adminController.postRestaurant)
 
   app.delete('/admin/restaurants/:id', authenticatedAdmin, adminController.deleteRestaurant)
+
+
 
 
   app.get('/signup', userController.signUpPage) //負責 render 註冊的頁面
