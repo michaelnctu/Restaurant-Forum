@@ -20,8 +20,8 @@ if (process.env.NODE_ENV !== 'production') {
 app.engine('handlebars', handlebars
   ({
     defaultLayout: 'main',
-    handlebars: allowInsecurePrototypeAccess(Handlebars),
-    helpers: require('./config/handlebars-helpers')
+    // handlebars: allowInsecurePrototypeAccess(Handlebars),
+    // helpers: require('./config/handlebars-helpers')
   }))
 
 app.set('view engine', 'handlebars')
@@ -61,7 +61,7 @@ Handlebars.registerHelper('revadminChecker', function (value) {     // handlebar
   else { return 'user' }
 })
 
-Handlebars.registerHelper('seflWareness', function (v1, v2) { //提醒當下的登入情況
+Handlebars.registerHelper('seflWareness', function (v1, v2) { //提醒當下的登入情況 
   if (v1 === v2) { return '(yourself)' }
 })
 
