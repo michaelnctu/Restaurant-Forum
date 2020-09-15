@@ -21,7 +21,7 @@
     {{#each users}}
     <tr>
       <th scope="row">{{this.id}}</th>
-      <td>{{this.email}} {{seflWareness this.email ../user.email}}</td>
+      <td>{{this.email}} {{selfWareness this.email ../user.email}}</td>
       <td>{{adminChecker this.isAdmin}}</td>
       <td>
         <form action="/admin/users/{{this.id}}?_method=PUT" method="POST" style="display: inline;">

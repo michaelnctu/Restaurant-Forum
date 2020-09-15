@@ -22,7 +22,11 @@ const adminController = {
   },
 
   getRestaurant: (req, res) => {
-    return Restaurant.findByPk(req.params.id, { include: [Category] }).then(restaurant => {  //{raw: true} 轉換成 JS 原生物件
+    return Restaurant.findByPk(req.params.id, {
+      raw: true,
+      nest: true,
+      include: [Category]
+    }).then(restaurant => {  //{raw: true} 轉換成 JS 原生物件
       return res.render('admin/restaurant', {
         restaurant: restaurant
       })
