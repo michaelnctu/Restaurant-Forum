@@ -7,6 +7,8 @@
 
   {{#if category}}
 
+
+  {{!-- 更新 --}}
   <form action="/admin/categories//{{category.id}}?_method=PUT" method="POST">
     <input type="text" placeholder="name" name="name" value="{{category.name}}">
     <button type="submit">Update</button>
