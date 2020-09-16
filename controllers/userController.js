@@ -4,6 +4,16 @@ const User = db.User
 
 
 const userController = {
+
+  getUser: (req, res) => {
+    console.log(
+      req.params.id
+    )
+    return User.findByPk(req.params.id).then(
+      res.render('profile')
+    )
+  },
+
   signUpPage: (req, res) => {
     return res.render('signup')
   },

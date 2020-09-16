@@ -25,7 +25,7 @@ let categoryController = {
     }
   },
 
-  getCategories: (req, res) => {
+  getCategory: (req, res) => {
     return Category.findAll({
       raw: true,
       nest: true
