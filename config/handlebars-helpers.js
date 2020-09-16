@@ -1,3 +1,5 @@
+const moment = require('moment')
+
 module.exports = {
   ifCond: function (a, b, options) {
     if (a === b) {
@@ -12,7 +14,7 @@ module.exports = {
   },
 
   moment: function (a) {
-    return this.moment(a).fromNow()
+    return moment(a).fromNow()
   }
 
 

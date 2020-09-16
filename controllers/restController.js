@@ -2,7 +2,7 @@ const db = require('../models')
 const userController = require('./userController')
 const Restaurant = db.Restaurant
 const Category = db.Category
-const Commnet = db.Comment
+const Comment = db.Comment
 const User = db.User
 const pageLimit = 10
 
