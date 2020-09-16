@@ -9,6 +9,11 @@ module.exports = {
 
   selfWareness: function (v1, v2) { //提醒當下的登入情況 
     if (v1 === v2) { return '(yourself)' }
+  },
+
+  moment: function (a) {
+    return this.moment(a).fromNow()
   }
+
 
 }
