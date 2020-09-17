@@ -39,6 +39,8 @@ module.exports = (app, passport) => {
 
   app.get('/restaurants/:id', authenticated, restController.getRestaurant)
 
+  app.get('/restaurants/:id/dashboard', authenticated, restController.getDashboard)
+
   app.post('/comments', authenticated, commentCategory.postComment)
 
   app.delete('/comments/:id', authenticatedAdmin, commentCategory.deleteComment)
@@ -60,6 +62,7 @@ module.exports = (app, passport) => {
   app.get('/admin/restaurants/create', authenticatedAdmin, adminController.createRestaurant)
 
   app.get('/admin/restaurants/:id', authenticatedAdmin, adminController.getRestaurant)
+
 
 
   app.get('/admin/restaurants/:id/edit', authenticatedAdmin, adminController.editRestaurant)

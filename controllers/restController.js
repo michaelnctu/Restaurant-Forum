@@ -83,8 +83,23 @@ let restController = {
         })
       })
     })
-  }
+  },
 
+  getDashboard: (req, res) => {
+    console.log('hey', req.params.id)
+    return Restaurant.findByPk(req.params.id, {
+      raw: true,
+      nest: true,
+      include: [
+        Category,
+        { model: Comment, include: [User] }
+      ]
+    }).then(restaurant => {
+      return res.render('dashboard', {
+        restaurant: restaurant
+      })
+    })
+  }
 }
 
 module.exports = restController
