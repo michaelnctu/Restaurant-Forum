@@ -4,14 +4,22 @@ const imgur = require('imgur-node-api')
 const fs = require('fs')
 const IMGUR_CLIENT_ID = process.env.IMGUR_CLIENT_ID
 const User = db.User
+const Comment = db.Comment
+const Restaurant = db.Restaurant
 
 
 const userController = {
 
   getUser: (req, res) => {
-    return User.findByPk(req.params.id).then(
-      res.render('profile')
-    )
+    return User.findByPk(req.params.id, {
+      include: {
+        model: Comment, include: [Restaurant]
+      }
+    }).then(user => {
+      return res.render('profile', {
+        user: user.toJSON()
+      })
+    })
   },
 
   editUser: (req, res) => {
