@@ -1,1 +1,17 @@
-<h1>hey</h1>
+<div class="card">
+
+  <div class="card-body d-flex flex-row">
+
+    <img class="card-img-top" src=" {{user.image}}" alt="Card image cap" style="width: 200px;">
+
+    <div>
+      <h1>{{user.name}}</h1>
+      <p class="card-text">{{user.email}}</p>
+
+      <a href="/users/{{user.id}}/edit" class="btn btn-primary">edit</a>
+
+
+    </div>
+  </div>
+
+</div>
