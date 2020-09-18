@@ -32,14 +32,11 @@ const userController = {
   },
 
   putUser: (req, res) => {
-
     if (!req.body.name) {
       req.flash('error_messages', "name didn't exist")
       res.redirect('back')
     }
-
     const { file } = req
-
     if (file) {
       imgur.setClientID(IMGUR_CLIENT_ID);
       imgur.upload(file.path, (err, img) => {
@@ -51,7 +48,7 @@ const userController = {
             })
               .then((user) => {
                 req.flash('success_messages', 'user was successfully  updated')
-                res.redirect('/users/{$user.id}')
+                res.redirect('/users/${user.id}')
               })
           })
       })
@@ -64,7 +61,7 @@ const userController = {
           })
             .then((restaurant) => {
               req.flash('success_messages', 'restaurant was successfully updated')
-              res.redirect('/users/{$user.id}')
+              res.redirect('/users/${user.id}')
             })
         })
     }
