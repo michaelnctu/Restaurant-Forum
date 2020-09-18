@@ -32,6 +32,7 @@ let restController = {
         description: r.dataValues.description.substring(0, 50),
         categoryName: r.dataValues.Category.name
       }))
+
       Category.findAll({
         raw: true,
         nest: true
@@ -49,15 +50,25 @@ let restController = {
     })
   },
 
+
+
   getRestaurant: (req, res) => {
+
     return Restaurant.findByPk(req.params.id, {
       include: [
         Category,
         { model: Comment, include: [User] }
       ]
     }).then(restaurant => {
-      return res.render('restaurant', {
-        restaurant: restaurant.toJSON()
+      let viewCounts = restaurant.viewCounts ? restaurant.viewCounts + 1 : 1
+      console.log(viewCounts)
+
+      restaurant.update({
+        viewCounts: viewCounts
+      }).then(restaurant => {
+        return res.render('restaurant', {
+          restaurant: restaurant.toJSON()
+        })
       })
     })
   },
@@ -85,18 +96,20 @@ let restController = {
     })
   },
 
+
   getDashboard: (req, res) => {
     console.log('hey', req.params.id)
     return Restaurant.findByPk(req.params.id, {
-      raw: true,
-      nest: true,
+
       include: [
         Category,
         { model: Comment, include: [User] }
       ]
     }).then(restaurant => {
+      console.log('restaurant資料', restaurant)
       return res.render('dashboard', {
-        restaurant: restaurant
+
+        restaurant: restaurant.toJSON()
       })
     })
   }

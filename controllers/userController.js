@@ -16,6 +16,7 @@ const userController = {
         model: Comment, include: [Restaurant]
       }
     }).then(user => {
+
       return res.render('profile', {
         user: user.toJSON()
       })
