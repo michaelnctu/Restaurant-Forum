@@ -11,12 +11,14 @@ const Restaurant = db.Restaurant
 const userController = {
 
   getUser: (req, res) => {
-    return User.findByPk(req.params.id, {
-      include: {
-        model: Comment, include: [Restaurant]
-      }
+    return User.findByPk(req.user.id, {
+      include: [
+        Comment,
+        {
+          model: Comment, include: [Restaurant]
+        }]
     }).then(user => {
-
+      console.log('user是', user)
       return res.render('profile', {
         user: user.toJSON()
       })
@@ -24,14 +26,12 @@ const userController = {
   },
 
   editUser: (req, res) => {
-    return User.findByPk(req.params.id).then(
+    return User.findByPk(req.params.id).then(user => {
       res.render('editprofile')
-    )
+    })
   },
 
   putUser: (req, res) => {
-
-    console.log("req.body", req.body)
 
     if (!req.body.name) {
       req.flash('error_messages', "name didn't exist")
