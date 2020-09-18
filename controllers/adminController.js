@@ -91,7 +91,7 @@ const adminController = {
       return Restaurant.findByPk(req.params.id).then(restaurant => {
         return res.render('admin/create', {
           categories: categories,
-          restaurant: restaurant
+          restaurant: restaurant.toJSON()
         })
       })
     })
