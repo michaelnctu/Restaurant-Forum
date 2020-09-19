@@ -44,7 +44,7 @@ const userController = {
           .then((user) => {
             user.update({
               name: req.body.name,
-              image: file ? img.data.link : user.image
+              image: file ? img.data.link : null
             })
               .then((user) => {
                 req.flash('success_messages', 'user was successfully  updated')
