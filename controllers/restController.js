@@ -55,7 +55,7 @@ let restController = {
 
 
 
-
+  // A20-Q2
   getRestaurant: (req, res) => {
     return Restaurant.findByPk(req.params.id, {
       include: [
@@ -63,7 +63,7 @@ let restController = {
         { model: Comment, include: [User] }
       ]
     }).then(restaurant => {
-      let viewCounts = restaurant.viewCounts ? restaurant.viewCounts + 1 : 1
+      let viewCounts = restaurant.viewCounts ? restaurant.viewCounts + 1 : 1  //A20
       console.log(viewCounts)
 
       restaurant.update({
