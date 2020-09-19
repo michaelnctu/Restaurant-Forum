@@ -10,6 +10,7 @@ const Restaurant = db.Restaurant
 
 const userController = {
 
+  //A19-Q2
   getUser: (req, res) => {
     return User.findByPk(req.user.id, {
       include: [
@@ -20,12 +21,14 @@ const userController = {
     })
   },
 
+  //A19-Q2
   editUser: (req, res) => {
     return User.findByPk(req.params.id).then(user => {
       res.render('editprofile')
     })
   },
 
+  //A19-Q2
   putUser: (req, res) => {
     if (!req.body.name) {
       req.flash('error_messages', "name didn't exist")

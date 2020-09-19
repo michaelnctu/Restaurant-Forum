@@ -53,11 +53,12 @@ module.exports = (app, passport) => {
 
   app.get('/users/:id/edit', authenticated, userController.editUser)
 
+  //A19-Q2
   app.put('/users/:id', authenticated, upload.single('image'), userController.putUser)
-
   app.put('/admin/users/:id', authenticatedAdmin, adminController.putUsers)
-
   app.get('/admin/restaurants', authenticatedAdmin, adminController.getRestaurants)
+
+
 
   app.get('/admin/restaurants/create', authenticatedAdmin, adminController.createRestaurant)
 
