@@ -41,7 +41,8 @@
   <div class="col-md-4">
     <div class="card mb-4 shadow-sm">
       <img class="card-img-top" src=" {{this.image}}" alt="Card image cap" width="286px" height="180px">
-      <div ass="card-body">
+
+      <div class="card-body">
         <p class="card-text">
           <a class="nav-link {{#ifCond this.id ../categoryId }}active{{/ifCond}}" href="/restaurants/{{this.id}}">
             {{this.name}}
@@ -49,16 +50,39 @@
         </p>
         <span class="badge badge-secondary">{{this.categoryName}}</span>
         <p class="card-text">{{this.description}}</p>
-        {{#if this.isFavorited}}
-        <form action="/favorite/{{this.id}}?_method=DELETE" method="POST"><button type="submit"
-            class="btn btn-danger">移除最愛</button></form>
 
-        {{else}}
+        <div class="card-text">
 
-        <form action="/favorite/{{this.id}}" method="POST"><button type="submit" class="btn btn-primary">加到最愛</button>
-        </form>
+          <div class="row">
 
-        {{/if}}
+            {{#if this.isLiked}}
+
+            <form action="/like/{{this.id}}?_method=DELETE" method="POST"><button type="submit"
+                class="btn mr-2 btn-danger">Unlike</button></form>
+
+            {{else}}
+
+            <form action="/like/{{this.id}}" method="POST"><button type="submit"
+                class="btn btn-primary mr-2">Like</button>
+            </form>
+
+            {{/if}}
+
+
+            {{#if this.isFavorited}}
+            <form action="/favorite/{{this.id}}?_method=DELETE" method="POST"><button type="submit"
+                class="btn btn-danger mr-2">移除最愛</button></form>
+
+            {{else}}
+
+            <form action="/favorite/{{this.id}}" method="POST"><button type="submit"
+                class="btn btn-primary mr-2">加到最愛</button>
+            </form>
+
+            {{/if}}
+
+          </div>
+        </div>
 
 
 

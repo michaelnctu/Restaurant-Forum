@@ -8,6 +8,7 @@ const Comment = db.Comment
 const Restaurant = db.Restaurant
 const Favorite = db.Favorite
 const Followship = db.Followship
+const Like = db.Like
 
 
 const userController = {
@@ -37,6 +38,44 @@ const userController = {
       })
   },
 
+  addLike: (req, res) => {
+    return Like.create({
+      UserId: req.user.id,
+      RestaurantId: req.params.restaurantId
+    })
+      .then((restaurant) => {
+        return res.redirect('back')
+      })
+
+  },
+
+  removeLike: (req, res) => {
+    return Like.findOne({
+      where: {
+        UserId: req.user.id,
+        RestaurantId: req.params.restaurantId
+      }
+    })
+      .then((Like) => {
+        Like.destroy()
+          .then((restaurant) => {
+            return res.redirect('back')
+          })
+      })
+  },
+
+  // getTop10: (req, res) => {
+  //   return Restaurant.findAll({
+  //     include: [
+  //       include: [
+  //         { model: }
+  //       ]
+  //     ]
+
+  //   })
+
+  // },
+
 
 
   getTopUser: (req, res) => {
@@ -59,8 +98,6 @@ const userController = {
       return res.render('topUser', { users: users })
     })
   },
-
-
 
 
   addFavorite: (req, res) => {
