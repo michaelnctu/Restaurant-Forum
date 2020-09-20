@@ -64,19 +64,6 @@ const userController = {
       })
   },
 
-  // getTop10: (req, res) => {
-  //   return Restaurant.findAll({
-  //     include: [
-  //       include: [
-  //         { model: }
-  //       ]
-  //     ]
-
-  //   })
-
-  // },
-
-
 
   getTopUser: (req, res) => {
     // 撈出所有 User 與 followers 資料

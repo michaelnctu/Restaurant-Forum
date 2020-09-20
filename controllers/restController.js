@@ -33,7 +33,6 @@ let restController = {
           ...r.dataValues,
           description: r.dataValues.description.substring(0, 50),
           isFavorited: req.user.FavoritedRestaurants.map(d => d.id).includes(r.id),
-          // categoryName: r.dataValues.Category.name
           isLiked: req.user.LikedRestaurants.map(d => d.id).includes(r.id)
         }))
 
@@ -54,7 +53,32 @@ let restController = {
       })
   },
 
+  getTopRest: (req, res) => {
+    // 撈出所有 User 與 followers 資料
+    return Restaurant.findAll({
 
+      include: [
+        Category,
+        { model: User, as: 'FavoritedUsers' },
+        { model: Comment, include: [User] }
+      ]
+    }).then(restaurants => {
+      // 整理 users 資料
+      restaurants = restaurants.map(restaurant => ({
+        ...restaurant.dataValues,
+
+        description: restaurant.dataValues.description.substring(0, 50),
+
+        // 計算FAVORITE過幾次
+        favCount: restaurant.dataValues.FavoritedUsers.length,
+
+        isfaved: restaurant.dataValues.FavoritedUsers.map(r => r.dataValues.id).includes(req.user.id)
+      }))
+      // 依追蹤者人數排序清單
+      restaurants = restaurants.sort((a, b) => b.favCount - a.favCount).filter((_, index) => index < 10)
+      return res.render('topRest', { restaurants: restaurants })
+    })
+  },
 
 
   // A20-Q2
