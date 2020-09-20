@@ -49,6 +49,8 @@ module.exports = (app, passport) => {
 
   app.get('/admin/users', authenticatedAdmin, adminController.getUsers)
 
+  app.get('/users/top', authenticated, userController.getTopUser)
+
   app.get('/users/:id', authenticated, userController.getUser)
 
   app.get('/users/:id/edit', authenticated, userController.editUser)
@@ -58,9 +60,13 @@ module.exports = (app, passport) => {
   app.put('/admin/users/:id', authenticatedAdmin, adminController.putUsers)
   app.get('/admin/restaurants', authenticatedAdmin, adminController.getRestaurants)
 
+  //favorite list
   app.post('/favorite/:restaurantId', authenticated, userController.addFavorite)
   app.delete('/favorite/:restaurantId', authenticated, userController.removeFavorite)
 
+  //followship 
+  app.post('/following/:userId', authenticated, userController.addFollowing)
+  app.delete('/following/:userId', authenticated, userController.removeFollowing)
 
 
   app.get('/admin/restaurants/create', authenticatedAdmin, adminController.createRestaurant)
