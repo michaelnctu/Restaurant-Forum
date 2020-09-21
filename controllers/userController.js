@@ -116,7 +116,7 @@ const userController = {
 
   //A19-Q2
   getUser: (req, res) => {
-    return User.findByPk(req.user.id, {
+    return User.findByPk(req.params.id, {
       include: [
         { model: Comment, include: [Restaurant] }
       ]
@@ -136,6 +136,11 @@ const userController = {
   putUser: (req, res, next) => {
     if (!req.body.name) {
       req.flash('error_messages', "name didn't exist")
+      return res.redirect('back')
+    }
+
+    if (req.params.id !== req.user.id) {
+      req.flash('error_messages', "非本人")
       return res.redirect('back')
     }
 

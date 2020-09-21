@@ -89,18 +89,26 @@ let restController = {
         { model: User, as: 'FavoritedUsers' },
         { model: Comment, include: [User] }
       ]
-    }).then(restaurant => {
-      let viewCounts = restaurant.viewCounts ? restaurant.viewCounts + 1 : 1  //A20
-      restaurant.update({
-        viewCounts: viewCounts
-      }).then(restaurant => {
-        const isFavorited = restaurant.FavoritedUsers.map(d => d.id).includes(req.user.id)
-        return res.render('restaurant', {
-          restaurant: restaurant.toJSON(),
-          isFavorited: isFavorited
+    })
+      .then(restaurant => {
+
+
+        // let viewCounts = restaurant.viewCounts ? restaurant.viewCounts : 0 //A20
+        // console.log('評論數', viewCounts)
+
+        // viewCounts = restaurant.increment('viewCounts')
+
+        console.log('increment前', restaurant.viewCounts)
+
+        restaurant.increment('viewCounts').then(restaurant => {
+          console.log('increment後', restaurant.viewCounts)
+          const isFavorited = restaurant.FavoritedUsers.map(d => d.id).includes(req.user.id)
+          return res.render('restaurant', {
+            restaurant: restaurant.toJSON(),
+            isFavorited: isFavorited
+          })
         })
       })
-    })
   },
 
   getFeeds: (req, res) => {
