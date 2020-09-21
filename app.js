@@ -9,6 +9,7 @@ const session = require('express-session')
 const passport = require('./config/passport')
 const methodOverride = require('method-override')
 
+
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 
 if (process.env.NODE_ENV !== 'production') {
@@ -74,5 +75,5 @@ Handlebars.registerHelper('modalPop', function (admin) {
 
 })
 
-require('./routes')(app, passport) // 把 passport 傳入 routes
+require('./routes')(app) // 把 passport 傳入 routes
 
