@@ -131,7 +131,7 @@ const userController = {
   },
 
   //A19-Q2
-  putUser: (req, res) => {
+  putUser: (req, res, next) => {
     if (!req.body.name) {
       req.flash('error_messages', "name didn't exist")
       return res.redirect('back')
@@ -139,7 +139,7 @@ const userController = {
 
     const { file } = req
     if (file) {
-      console.log(IMGUR_CLIENT_ID)
+      console.log("client Id 是", IMGUR_CLIENT_ID)
       imgur.setClientID(IMGUR_CLIENT_ID);
       imgur.upload(file.path, (err, img) => {
         //error handling
