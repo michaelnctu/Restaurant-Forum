@@ -9,31 +9,93 @@
       <h1>{{user.name}}</h1>
       <p class="card-text">{{user.email}}</p>
       <p class="card-text">{{user.Comments.length}} 間已評論的餐廳</p>
+      <p class="card-text">{{user.FavoritedRestaurants.length}} 收藏的餐廳</p>
+      <p class="card-text">{{user.Followings.length}} followings(追蹤者)</p>
+      <p class="card-text">{{user.Followers.length}} follers(追隨者)</p>
 
       <a href="/users/{{user.id}}/edit" class="btn btn-primary">edit</a>
     </div>
   </div>
-
   </br>
   </br>
 
-  <div>
-    <h5 class="card-header"> {{user.Comments.length}}間已評論餐廳</h5>
+</div>
+
+<div class="card-body row">
+
+  <div class="card">
+    <div>
+      <h5 class="card-header"> {{user.Comments.length}}間已評論餐廳</h5>
+
+      <div class="card-body">
+
+        {{#each user.Comments}}
+
+        <a href="/restaurants/{{this.Restaurant.id}}">
+
+          <img src="{{this.Restaurant.image}}" alt="Card image cap" style="width: 150px;">
+
+        </a>
+
+        {{/each}}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div>
+      <h5 class="card-header"> {{user.FavoritedRestaurants.length}} 收藏的餐廳</h5>
+
+      <div class="card-body">
+
+        {{#each user.FavoritedRestaurants}}
+
+        <a href="/restaurants/{{this.id}}">
+
+          <img src="{{this.image}}" alt="Card image cap" style="width: 150px;">
+
+        </a>
+
+        {{/each}}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <h5 class="card-header"> {{user.Followings.length}} followings(追蹤者)</h5>
 
     <div class="card-body">
 
-      {{#each user.Comments}}
+      {{#each user.Followings}}
 
-      <a href="/restaurants/{{this.Restaurant.id}}">
+      <a href="/restaurants/{{this.id}}">
 
-        <img src="{{this.Restaurant.image}}" alt="Card image cap" style="width: 150px;">
+        <img src="{{this.image}}" alt="Card image cap" style="width: 150px;">
 
       </a>
 
       {{/each}}
     </div>
-
   </div>
 
+  <div class="card">
+    <h5 class="card-header"> {{user.Followers.length}} follers(追隨者)</h5>
+
+    <div class="card-body">
+
+      {{#each user.Followers}}
+
+      <a href="/restaurants/{{this.id}}">
+
+        <img src="{{this.image}}" alt="Card image cap" style="width: 150px;">
+
+      </a>
+
+      {{/each}}
+    </div>
+  </div>
 
 </div>
