@@ -102,7 +102,7 @@ let restController = {
 
         restaurant.increment('viewCounts').then(restaurant => {
           console.log('increment後', restaurant.viewCounts)
-          const isFavorited = restaurant.FavoritedUsers.map(d => d.id).includes(req.user.id)
+          const isFavorited = restaurant.FavoritedUsers.map(d => d.id).includes(req.user.id)  //restaurant.FavoritedUsers.map(d => d.id)輸出一個 id的array 
           return res.render('restaurant', {
             restaurant: restaurant.toJSON(),
             isFavorited: isFavorited

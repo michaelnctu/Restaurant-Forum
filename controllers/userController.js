@@ -143,7 +143,9 @@ const userController = {
       return res.redirect('back')
     }
 
-    if (req.params.id !== req.user.id) {
+
+    if (Number(req.params.id) !== req.user.id) {
+
       req.flash('error_messages', "非本人")
       return res.redirect('back')
     }
