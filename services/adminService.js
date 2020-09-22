@@ -12,7 +12,6 @@ const adminService = {
       include: [Category]
     }).then(restaurants => {
       callback({ restaurants: restaurants })
-
       // return res.render('admin/restaurants', { restaurants: restaurants })
     })
   },
