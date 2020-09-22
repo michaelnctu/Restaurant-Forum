@@ -82,13 +82,13 @@ let restController = {
     })
   },
 
-
   // A20-Q2
   getRestaurant: (req, res) => {
     return Restaurant.findByPk(req.params.id, {
       include: [
         Category,
         { model: User, as: 'FavoritedUsers' },
+        { model: User, as: 'LikedUsers' },
         { model: Comment, include: [User] }
       ]
     })
@@ -100,14 +100,15 @@ let restController = {
 
         // viewCounts = restaurant.increment('viewCounts')
 
-        console.log('increment前', restaurant.viewCounts)
 
         restaurant.increment('viewCounts').then(restaurant => {
-          console.log('increment後', restaurant.viewCounts)
           const isFavorited = restaurant.FavoritedUsers.map(d => d.id).includes(req.user.id)  //restaurant.FavoritedUsers.map(d => d.id)輸出一個 id的array 
+          const isLiked = restaurant.LikedUsers.map(d => d.id).includes(req.user.id)
           return res.render('restaurant', {
             restaurant: restaurant.toJSON(),
-            isFavorited: isFavorited
+            isFavorited: isFavorited,
+            isLiked: isLiked
+
           })
         })
       })

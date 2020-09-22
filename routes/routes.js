@@ -43,6 +43,11 @@ router.get('/restaurants/feeds', authenticated, restController.getFeeds)
 
 router.get('/restaurants/:id', authenticated, restController.getRestaurant)
 
+
+
+
+
+
 router.get('/restaurants/:id/dashboard', authenticated, restController.getDashboard)
 
 router.post('/comments', authenticated, commentCategory.postComment)
@@ -68,6 +73,7 @@ router.get('/admin/restaurants', authenticatedAdmin, adminController.getRestaura
 router.post('/favorite/:restaurantId', authenticated, userController.addFavorite)
 router.delete('/favorite/:restaurantId', authenticated, userController.removeFavorite)
 
+//like
 router.post('/like/:restaurantId', authenticated, userController.addLike)
 router.delete('/like/:restaurantId', authenticated, userController.removeLike)
 

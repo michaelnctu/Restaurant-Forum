@@ -41,13 +41,16 @@ const userController = {
   },
 
   addLike: (req, res) => {
-    return Like.create({
-      UserId: req.user.id,
-      RestaurantId: req.params.restaurantId
+
+    return Like.findOrCreate({
+      where: { RestaurantId: req.params.restaurantId },
+      defaults: {
+        UserId: req.user.id,
+        RestaurantId: req.params.restaurantId
+      }
+    }).then((restaurant) => {
+      return res.redirect('back')
     })
-      .then((restaurant) => {
-        return res.redirect('back')
-      })
 
   },
 
