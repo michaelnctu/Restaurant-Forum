@@ -63,19 +63,21 @@ let restController = {
         { model: Comment, include: [User] }
       ]
     }).then(restaurants => {
+
       // 整理 users 資料
       restaurants = restaurants.map(restaurant => ({
         ...restaurant.dataValues,
 
-        description: restaurant.dataValues.description.substring(0, 50),
+        description: restaurant.description.substring(0, 50),
 
         // 計算FAVORITE過幾次
-        favCount: restaurant.dataValues.FavoritedUsers.length,
+        favCount: restaurant.FavoritedUsers.length,
 
-        isfaved: restaurant.dataValues.FavoritedUsers.map(r => r.dataValues.id).includes(req.user.id)
+        isfaved: restaurant.FavoritedUsers.map(r => r.id).includes(req.user.id)
       }))
       // 依追蹤者人數排序清單
-      restaurants = restaurants.sort((a, b) => b.favCount - a.favCount).filter((_, index) => index < 10)
+      // restaurants = restaurants.sort((a, b) => b.favCount - a.favCount).filter((_, index) => index < 10) 舊寫法
+      restaurants = restaurants.sort((a, b) => b.favCount - a.favCount).slice(0, 10)
       return res.render('topRest', { restaurants: restaurants })
     })
   },
