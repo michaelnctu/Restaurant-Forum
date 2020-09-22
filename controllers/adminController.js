@@ -9,8 +9,6 @@ const adminService = require('../services/adminService.js')
 
 
 
-
-
 const adminController = {
   getRestaurants: (req, res) => {
     adminService.getRestaurants(req, res, (data) => {
@@ -19,15 +17,22 @@ const adminController = {
   },
 
   getRestaurant: (req, res) => {
-    return Restaurant.findByPk(req.params.id, {
-      raw: true,
-      nest: true,
-      include: [Category]
-    }).then(restaurant => {  //{raw: true} 轉換成 JS 原生物件
-      return res.render('admin/restaurant', {
-        restaurant: restaurant
-      })
+
+    adminService.getRestaurant(req, res, (data) => {
+      return res.render('admin/restaurant', data)
     })
+
+
+
+    // return Restaurant.findByPk(req.params.id, {
+    //   raw: true,
+    //   nest: true,
+    //   include: [Category]
+    // }).then(restaurant => {  //{raw: true} 轉換成 JS 原生物件
+    //   return res.render('admin/restaurant', {
+    //     restaurant: restaurant
+    //   })
+    // })
   },
 
   createRestaurant: (req, res) => {
