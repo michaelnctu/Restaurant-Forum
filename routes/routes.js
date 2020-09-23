@@ -100,7 +100,7 @@ router.put('/admin/categories/:id', authenticatedAdmin, categoryController.putCa
 
 router.delete('/admin/categories/:id', authenticatedAdmin, categoryController.deleteCategory)
 
-// app.post('/admin/categories', authenticatedAdmin, categoryController.postCategory)
+router.post('/admin/categories', authenticatedAdmin, categoryController.postCategory)
 
 
 

@@ -22,14 +22,14 @@ let categoryController = {
 
   postCategory: (req, res) => {
 
-    categoryService.postCatrgory(req, res, (data) => {
+    categoryService.postCategory(req, res, (data) => {
 
       if (data['status'] === 'error') {
         req.flash('error_messages', data['message'])
         return res.redirect('back')
       }
       req.flash('success_messages', data['message'])
-      res.redirect('/admin/restaurants')
+      res.redirect('back')
     })
 
 
