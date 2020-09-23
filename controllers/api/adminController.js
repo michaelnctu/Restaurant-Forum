@@ -10,10 +10,6 @@ const adminController = {
     adminService.getRestaurants(req, res, (data) => {
       return res.json(data)
     })
-
-    // return Restaurant.findAll({ include: [Category] }).then(restaurants => {
-    //   return res.json({ restaurants: restaurants })
-    // })
   },
 
   getRestaurant: (req, res) => {
@@ -37,6 +33,12 @@ const adminController = {
       return res.json(data)
     })
   },
+
+  putRestaurant: (req, res) => {
+    adminService.putRestaurant(req, res, (data) => {
+      return res.json(data)
+    })
+  }
 
 
 }
