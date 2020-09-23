@@ -4,12 +4,12 @@ const categoryService = require('../services/categoryService.js')
 
 let categoryController = {
 
-  getCategories: (req, res) => {
+  // getCategories: (req, res) => {
 
-    categoryService.getCategories(req, res, data => {
-      return res.render('admin/categories', data)
-    })
-  },
+  //   categoryService.getCategories(req, res, data => {
+  //     return res.render('admin/categories', data)
+  //   })
+  // },
 
   // getCategories: (req, res) => {
   //   return Category.findAll({
@@ -20,20 +20,32 @@ let categoryController = {
   //   })
   // },
 
-  postCategories: (req, res) => {
-    if (!req.body.name) {
-      req.flash('error_messages', 'name didn\'t exist ')
-    } else {
-      return Category.create({
-        name: req.body.name
-      })
-        .then((category) => {
-          res.redirect('/admin/categories')
-        })
-    }
+  postCategory: (req, res) => {
+
+    categoryService.postCatrgory(req, res, (data) => {
+
+      if (data['status'] === 'error') {
+        req.flash('error_messages', data['message'])
+        return res.redirect('back')
+      }
+      req.flash('success_messages', data['message'])
+      res.redirect('/admin/restaurants')
+    })
+
+
+    // if (!req.body.name) {
+    //   req.flash('error_messages', 'name didn\'t exist ')
+    // } else {
+    //   return Category.create({
+    //     name: req.body.name
+    //   })
+    //     .then((category) => {
+    //       res.redirect('/admin/categories')
+    //     })
+    // }
   },
 
-  getCategory: (req, res) => {
+  getCategories: (req, res) => {
     return Category.findAll({
       raw: true,
       nest: true
