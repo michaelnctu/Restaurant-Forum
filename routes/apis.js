@@ -8,6 +8,8 @@ const adminController = require('../controllers/api/adminController.js')
 const categoryController = require('../controllers/api/categoryController.js')
 
 router.put('/admin/categories/:id', categoryController.putCategory)
+router.delete('/admin/categories/:id', categoryController.deleteCategory)
+
 
 router.get('/admin/restaurants', adminController.getRestaurants)
 
