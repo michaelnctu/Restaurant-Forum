@@ -43,7 +43,7 @@ const userController = {
   addLike: (req, res) => {
 
     return Like.findOrCreate({
-      where: { RestaurantId: req.params.restaurantId },
+      where: { RestaurantId: req.params.restaurantId, UserId: req.user.id },
       defaults: {
         UserId: req.user.id,
         RestaurantId: req.params.restaurantId

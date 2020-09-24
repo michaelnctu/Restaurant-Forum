@@ -41,4 +41,6 @@ router.delete('/admin/restaurants/:id', authenticated, authenticatedAdmin, admin
 // JWT signin
 router.post('/signin', userController.signIn)
 
+router.post('/signup', userController.signUp)
+
 module.exports = router
