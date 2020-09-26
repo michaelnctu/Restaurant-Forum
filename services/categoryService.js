@@ -26,46 +26,46 @@ const categoryService = {
   },
 
 
-  //   postCategory: (req, res, callback) => {
-  //   if (!req.body.name) {
-  //     callback({ status: error, message: 'name didn\'t exist ' })
-  //     // req.flash('error_messages', 'name didn\'t exist ')
-  //   } else {
-  //     return Category.create({
-  //       name: req.body.name
-  //     })
-  //       .then((category) => {
-  //         callback({ status: 'success', message: 'category was successfully created' })
-  //       })
-  //   }
-  // },
+  postCategory: (req, res, callback) => {
+    if (!req.body.name) {
+      callback({ status: error, message: 'name didn\'t exist ' })
+      // req.flash('error_messages', 'name didn\'t exist ')
+    } else {
+      return Category.create({
+        name: req.body.name
+      })
+        .then((category) => {
+          callback({ status: 'success', message: 'category was successfully created' })
+        })
+    }
+  },
 
-  // putCategory: (req, res, callback) => {
-  //   if (!req.body.name) {
+  putCategory: (req, res, callback) => {
+    if (!req.body.name) {
 
-  //     callback({ status: 'error', message: 'name didn\'t exist' })
+      callback({ status: 'error', message: 'name didn\'t exist' })
 
-  //   } else {
-  //     return Category.findByPk(req.params.id)
-  //       .then((category) => {
-  //         category.update(req.body)
-  //           .then((category) => {
-  //             callback({ status: 'success', message: 'category was successfully updated' })
-  //           })
-  //       })
-  //   }
-  // },
+    } else {
+      return Category.findByPk(req.params.id)
+        .then((category) => {
+          category.update(req.body)
+            .then((category) => {
+              callback({ status: 'success', message: 'category was successfully updated' })
+            })
+        })
+    }
+  },
 
-  // deleteCategory: (req, res, callback) => {
-  //   return Category.findByPk(req.params.id)
-  //     .then((category) => {
-  //       category.destroy()
-  //         .then((category) => {
-  //           callback({ status: 'success', message: '' })
-  //           // res.redirect('/admin/categories')
-  //         })
-  //     })
-  // }
+  deleteCategory: (req, res, callback) => {
+    return Category.findByPk(req.params.id)
+      .then((category) => {
+        category.destroy()
+          .then((category) => {
+            callback({ status: 'success', message: '' })
+            // res.redirect('/admin/categories')
+          })
+      })
+  }
 
 
 
