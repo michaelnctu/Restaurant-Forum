@@ -7,7 +7,7 @@ const upload = multer({ dest: 'temp/' })
 const userController = require('../controllers/api/userController.js')
 const adminController = require('../controllers/api/adminController.js')
 const categoryController = require('../controllers/api/categoryController.js')
-
+const commentController = require('../controllers/api/commentController.js')
 const passport = require('../config/passport')
 
 const authenticated = passport.authenticate('jwt', { session: false })
@@ -27,6 +27,10 @@ router.post('/admin/categories', authenticated, authenticatedAdmin, categoryCont
 router.put('/admin/categories/:id', authenticated, authenticatedAdmin, categoryController.putCategory)
 router.delete('/admin/categories/:id', authenticated, authenticatedAdmin, categoryController.deleteCategory)
 
+
+//comments
+router.post('/comments', authenticated, commentController.postComment)
+router.delete('/comments/:id', authenticated, commentController.deleteComment)
 
 //users
 router.get('/admin/users', authenticatedAdmin, adminController.getUsers)

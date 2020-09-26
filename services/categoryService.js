@@ -65,7 +65,7 @@ const categoryService = {
             // res.redirect('/admin/categories')
           })
       })
-  }
+  },
 
 
 
