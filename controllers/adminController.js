@@ -23,7 +23,6 @@ const adminController = {
     })
 
 
-
     // return Restaurant.findByPk(req.params.id, {
     //   raw: true,
     //   nest: true,
@@ -90,8 +89,6 @@ const adminController = {
       }
     })
   },
-
-
 
   //A17作業
 

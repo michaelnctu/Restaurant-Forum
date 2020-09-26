@@ -1,10 +1,19 @@
 const db = require('../../models')
-const Restaurant = db.Restaurant
+
+
 const Category = db.Category
 const categoryService = require('../../services/categoryService.js')
 
 
 const categoryController = {
+
+
+  getCategories: (req, res) => {
+    categoryService.getCategories(req, res, (data) => {
+      return res.json(data)
+    })
+
+  },
 
   postCategory: (req, res) => {
 
@@ -26,9 +35,6 @@ const categoryController = {
 
     })
   }
-
-
-
 
 
 }

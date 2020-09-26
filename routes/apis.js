@@ -21,11 +21,9 @@ const authenticatedAdmin = (req, res, next) => {
   }
 }
 
-
-
-
-// router.get('/admin/categories', authenticated, authenticatedAdmin, categoryController.getCategories)
-// router.post('/admin/categories', authenticated, authenticatedAdmin, categoryController.postCategory)
+//categories
+router.get('/admin/categories', authenticated, authenticatedAdmin, categoryController.getCategories)
+router.post('/admin/categories', authenticated, authenticatedAdmin, categoryController.postCategory)
 router.put('/admin/categories/:id', authenticated, authenticatedAdmin, categoryController.putCategory)
 router.delete('/admin/categories/:id', authenticated, authenticatedAdmin, categoryController.deleteCategory)
 
@@ -40,7 +38,6 @@ router.delete('/admin/restaurants/:id', authenticated, authenticatedAdmin, admin
 
 // JWT signin
 router.post('/signin', userController.signIn)
-
 router.post('/signup', userController.signUp)
 
 module.exports = router
