@@ -93,25 +93,34 @@ const adminController = {
   //A17作業
 
   getUsers: (req, res) => {
-    return User.findAll({ raw: true, nest: true }).then(users => {
-      return res.render('admin/users', { users })
-    })
-      .catch(err => console.log(err))
+    adminService.getUsers(req, res, (data) => {
+      res.render('admin/users', data)
+    }).catch(err => console.log(err))
   },
+  // return User.findAll({ raw: true, nest: true }).then(users => {
+  //   return res.render('admin/users', { users })
+  // })
+  //   .catch(err => console.log(err))
 
   putUsers: (req, res) => {
-    console.log(req.user)
 
-    return User.findByPk(req.params.id)  //找出表單送出的user
-      .then(user => {
-        user.update({
-          isAdmin: !user.isAdmin
-        })
-      }).then((user) => {
+    adminService.putUsers(req, res, (data) => {
+      if (data['status'] === 'success') {
         req.flash('success_messages', 'user was successfully updated')
         res.redirect('/admin/users')
-      })
-      .catch(err => console.log(err))
+      }
+    })
+
+    // return User.findByPk(req.params.id)  //找出表單送出的user
+    //   .then(user => {
+    //     user.update({
+    //       isAdmin: !user.isAdmin
+    //     })
+    //   }).then((user) => {
+    //     req.flash('success_messages', 'user was successfully updated')
+    //     res.redirect('/admin/users')
+    //   })
+    //   .catch(err => console.log(err))
 
   }
 

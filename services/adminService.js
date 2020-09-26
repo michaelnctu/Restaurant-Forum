@@ -129,7 +129,35 @@ const adminService = {
             })
         })
     }
+  },
+
+  getUsers: (req, res, callback) => {
+    return User.findAll({ raw: true, nest: true }).then(users => {
+      callback({ users: users })
+    })
+    // .catch(err => console.log(err))
+  },
+
+  putUsers: (req, res) => {
+    console.log(req.user)
+
+    return User.findByPk(req.params.id)  //找出表單送出的user
+      .then(user => {
+        user.update({
+          isAdmin: !user.isAdmin
+        })
+      }).then((user) => {
+        callback({ status: 'success', message: 'user was successfully updated' })
+        // req.flash('success_messages', 'user was successfully updated')
+        // res.redirect('/admin/users')
+      })
+      .catch(err => console.log(err))
+
   }
+
+
+
+
 
 }
 

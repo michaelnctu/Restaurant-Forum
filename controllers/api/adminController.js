@@ -6,7 +6,6 @@ const adminService = require('../../services/adminService.js')
 
 const adminController = {
   getRestaurants: (req, res) => {
-
     adminService.getRestaurants(req, res, (data) => {
       return res.json(data)
     })
@@ -34,6 +33,35 @@ const adminController = {
     adminService.putRestaurant(req, res, (data) => {
       return res.json(data)
     })
+  },
+
+  getUsers: (req, res) => {
+    adminService.getUsers(req, res, (data) => {
+      return res.json(data)
+    }).catch(err => console.log(err))
+  },
+  // return User.findAll({ raw: true, nest: true }).then(users => {
+  //   return res.render('admin/users', { users })
+  // })
+  //   .catch(err => console.log(err))
+
+  putUsers: (req, res) => {
+
+    adminService.putUsers(req, res, (data) => {
+      return res.json(data)
+    })
+
+    // return User.findByPk(req.params.id)  //找出表單送出的user
+    //   .then(user => {
+    //     user.update({
+    //       isAdmin: !user.isAdmin
+    //     })
+    //   }).then((user) => {
+    //     req.flash('success_messages', 'user was successfully updated')
+    //     res.redirect('/admin/users')
+    //   })
+    //   .catch(err => console.log(err))
+
   }
 
 

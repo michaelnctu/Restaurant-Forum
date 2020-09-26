@@ -23,7 +23,6 @@ let categoryController = {
 
   },
 
-
   putCategory: (req, res) => {
     categoryService.putCategory(req, res, (data) => {
       if (data['status'] === 'error') {
