@@ -10,6 +10,77 @@ const JwtStrategy = passportJWT.Strategy
 
 let userController = {
 
+
+
+  addFollowing: (req, res) => {
+
+    userService.addFollowing(req, res, (data) => {
+      return res.json(data)
+    })
+  },
+
+  removeFollowing: (req, res) => {
+    userService.removeFollowing(req, res, (data) => {
+      return res.json(data)
+    })
+  },
+
+  addLike: (req, res) => {
+
+    userService.addLike(req, res, (data) => {
+      return res.json(data)
+    })
+
+  },
+
+  removeLike: (req, res) => {
+    userService.removeLike(req, res, (data) => {
+      return res.json(data)
+    })
+  },
+
+
+  getTopUser: (req, res) => {
+    userService.getTopUser(req, res, (data) => {
+      return res.json(data)
+    })
+  },
+
+
+  addFavorite: (req, res) => {
+    userService.addFavorite(req, res, (data) => {
+      return res.json(data)
+    })
+  },
+
+  removeFavorite: (req, res) => {
+    userService.removeFavorite(req, res, (data) => {
+      return res.json(data)
+    })
+  },
+
+  //A19-Q2
+  getUser: (req, res) => {
+
+    userService.getUser(req, res, (data) => {
+      return res.json(data)
+    })
+  },
+
+
+
+  //A19-Q2
+  putUser: (req, res, next) => {
+
+    userService.putUser(req, res, (data) => {
+      if (data['status'] === 'success') {
+        req.flash('success_messages', data['message'])
+      }
+      return res.json(data)
+    })
+
+  },
+
   signUp: (req, res) => {
     if (req.body.passwordCheck !== req.body.password) {
       return res.json({ status: 'error', message: '兩次密碼輸入不同！' })
