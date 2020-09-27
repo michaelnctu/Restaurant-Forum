@@ -2,6 +2,7 @@ const db = require('../models')
 const Restaurant = db.Restaurant
 const Category = db.Category
 const User = db.User
+const pageLimit = 10
 
 
 let restService = {

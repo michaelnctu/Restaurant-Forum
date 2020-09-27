@@ -7,6 +7,7 @@ const Favorite = db.Favorite
 const Like = db.Like
 const Followship = db.Followship
 
+
 const imgur = require('imgur-node-api')
 const IMGUR_CLIENT_ID = process.env.IMGUR_CLIENT_ID
 
@@ -30,7 +31,7 @@ const userService = {
       })
   },
 
-  removeFollowing: (req, res) => {
+  removeFollowing: (req, res, callback) => {
     return Followship.findOne({
       where: {
         followerId: req.user.id,
@@ -45,7 +46,7 @@ const userService = {
       })
   },
 
-  addLike: (req, res) => {
+  addLike: (req, res, callback) => {
 
     return Like.findOrCreate({
       where: { RestaurantId: req.params.restaurantId, UserId: req.user.id },
@@ -59,7 +60,7 @@ const userService = {
 
   },
 
-  removeLike: (req, res) => {
+  removeLike: (req, res, callback) => {
     return Like.findOne({
       where: {
         UserId: req.user.id,
@@ -75,7 +76,7 @@ const userService = {
   },
 
 
-  getTopUser: (req, res) => {
+  getTopUser: (req, res, callback) => {
     // 撈出所有 User 與 followers 資料
     return User.findAll({
       include: [
@@ -97,7 +98,7 @@ const userService = {
   },
 
 
-  addFavorite: (req, res) => {
+  addFavorite: (req, res, callback) => {
     return Favorite.create({
       UserId: req.user.id,
       RestaurantId: req.params.restaurantId
@@ -107,7 +108,7 @@ const userService = {
       })
   },
 
-  removeFavorite: (req, res) => {
+  removeFavorite: (req, res, callback) => {
     return Favorite.findOne({
       where: {
         UserId: req.user.id,
@@ -123,7 +124,7 @@ const userService = {
   },
 
   //A19-Q2
-  getUser: (req, res) => {
+  getUser: (req, res, callback) => {
     return User.findByPk(req.params.id, {
       include: [
         { model: Restaurant, as: 'FavoritedRestaurants' },
@@ -138,11 +139,10 @@ const userService = {
   },
 
   //A19-Q2
-  putUser: (req, res, next) => {
+  putUser: (req, res, callback) => {
     if (!req.body.name) {
       return callback({ status: 'error', message: 'name did not exist' })
     }
-
 
     if (Number(req.params.id) !== req.user.id) {
       return callback({ status: 'error', message: 'permission denied' })
@@ -150,7 +150,6 @@ const userService = {
 
     const { file } = req
     if (file) {
-      console.log("client Id 是", IMGUR_CLIENT_ID)
       imgur.setClientID(IMGUR_CLIENT_ID);
       imgur.upload(file.path, (err, img) => {
         //error handling
@@ -163,13 +162,15 @@ const userService = {
           .then((user) => {
             user.update({
               name: req.body.name,
-              image: file ? img.data.link : null
+              image: file ? img.data.link : user.image
             }).then((user) => {
               return callback({ status: 'sucess', message: 'user was successfully  updated' })
             })
           })
       })
     } else {
+      console.log('目前的id是', req.params.id)
+      console.log('目前的req.body', req.body.name)
       return User.findByPk(req.params.id)
         .then((user) => {
           user.update({
@@ -182,50 +183,10 @@ const userService = {
     }
   },
 
-  signUpPage: (req, res) => {
-    return res.render('signup')
-  },
 
-  signUp: (req, res) => {
 
-    if (req.body.passwordCheck !== req.body.password) {
-      req.flash('error_messages', "兩次密碼輸入不同!")
-      return res.redirect('/signup')
-    } else {
-      User.findOne({ where: { email: req.body.email } }).then(user => {
-        if (user) {
-          req.flash('error_messages', '信箱重複!')
-          return res.redirect('/signup')
-        } else {
-          User.create({
-            name: req.body.name,
-            email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10), null)
-          }).then(user => {
-            req.flash('success_messages', '成功註冊帳號!')
-            return res.redirect('/signin')
-          })
 
-        }
-      })
-    }
 
-  },
-
-  signInPage: (req, res) => {
-    return res.render('signin')
-  },
-
-  signIn: (req, res) => {
-    req.flash('success_messages', '成功登入!')
-    res.redirect('/restaurants')
-  },
-
-  logout: (req, res) => {
-    req.flash('success_messages', '登出成功!')
-    req.logout()
-    res.redirect('/signin')
-  }
 }
 
 

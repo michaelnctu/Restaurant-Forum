@@ -80,12 +80,11 @@ const userController = {
 
   //A19-Q2
   putUser: (req, res, next) => {
-
     userService.putUser(req, res, (data) => {
       if (data['status'] === 'success') {
         req.flash('success_messages', data['message'])
       }
-      res.redirect(`/users/${user.id}`)
+      res.redirect(`/users/${req.params.id}`)
     })
 
   },
