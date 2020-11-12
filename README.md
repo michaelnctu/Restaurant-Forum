@@ -1,7 +1,18 @@
 # Restaurant-Forum
 
+Heroku: 
+
 # 網站畫面
+
+首頁
+```
 ![image](https://user-images.githubusercontent.com/65526955/98906652-734f5380-24f8-11eb-807e-ce8215f6eaf6.png)
+```
+
+餐廳簡介 (圖片為隨機產生的random資料)
+```
+![image](https://user-images.githubusercontent.com/65526955/98907225-74cd4b80-24f9-11eb-9935-e87c80cdf0ab.png)
+```
 
 網站功能
 
