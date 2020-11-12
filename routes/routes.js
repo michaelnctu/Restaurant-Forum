@@ -31,6 +31,10 @@ const authenticatedAdmin = (req, res, next) => {
   res.redirect('/signin')
 }
 
+//facebook auth
+const auth = require('./auth')
+
+router.use('/auth', auth)
 
 
 router.get('/', authenticated, (req, res) => res.redirect('/restaurants'))

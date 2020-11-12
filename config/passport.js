@@ -22,6 +22,41 @@ passport.use(new Localstrategy(
   }
 ))
 
+
+
+//facebook login
+const FacebookStrategy = require('passport-facebook').Strategy
+passport.use(new FacebookStrategy({
+  clientID: '3748142675219432',
+  clientSecret: 'e24cb6ee74ff9fe163f6d0311500c323',
+  callbackURL: "http://localhost:3000/auth/facebook/callback",
+  profileFields: ['email', 'displayName']
+},
+  (accessToken, refreshToken, profile, done) => {
+
+    const { name, email } = profile._json
+    User.findOne({ where: { email: profile._json.email } })
+      .then(user => {
+        if (user) return done(null, user)
+
+        const randomPassword = Math.random().toString(36).slice(-8)  //轉為36進位的資料,只取後面 8位
+
+        bcrypt
+          .genSalt(10)
+          .then(salt => bcrypt.hash(randomPassword, salt))
+          .then(hash => User.create({
+            name,
+            email,
+            password: hash
+          }))
+          .then(user => done(null, user))
+          .catch(err => done(err, false))
+      });
+  }
+));
+
+
+
 // serialize and deserialize user
 passport.serializeUser((user, cb) => {
   cb(null, user.id)
