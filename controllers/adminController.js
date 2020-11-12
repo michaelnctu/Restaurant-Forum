@@ -22,16 +22,6 @@ const adminController = {
       return res.render('admin/restaurant', data)
     })
 
-
-    // return Restaurant.findByPk(req.params.id, {
-    //   raw: true,
-    //   nest: true,
-    //   include: [Category]
-    // }).then(restaurant => {  //{raw: true} 轉換成 JS 原生物件
-    //   return res.render('admin/restaurant', {
-    //     restaurant: restaurant
-    //   })
-    // })
   },
 
   createRestaurant: (req, res) => {
@@ -110,17 +100,6 @@ const adminController = {
         res.redirect('/admin/users')
       }
     })
-
-    // return User.findByPk(req.params.id)  //找出表單送出的user
-    //   .then(user => {
-    //     user.update({
-    //       isAdmin: !user.isAdmin
-    //     })
-    //   }).then((user) => {
-    //     req.flash('success_messages', 'user was successfully updated')
-    //     res.redirect('/admin/users')
-    //   })
-    //   .catch(err => console.log(err))
 
   }
 
