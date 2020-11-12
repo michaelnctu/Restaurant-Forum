@@ -1,5 +1,7 @@
 # Restaurant-Forum
 
+# 網站畫面
+![image](https://user-images.githubusercontent.com/65526955/98906652-734f5380-24f8-11eb-807e-ce8215f6eaf6.png)
 
 網站功能
 
