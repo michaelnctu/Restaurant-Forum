@@ -27,8 +27,8 @@ passport.use(new Localstrategy(
 //facebook login
 const FacebookStrategy = require('passport-facebook').Strategy
 passport.use(new FacebookStrategy({
-  clientID: '3748142675219432',
-  clientSecret: 'e24cb6ee74ff9fe163f6d0311500c323',
+  clientID: process.env.FACEBOOK_ID,
+  clientSecret: process.env.FACEBOOK_SECRET,
   callbackURL: "http://localhost:3000/auth/facebook/callback",
   profileFields: ['email', 'displayName']
 },
