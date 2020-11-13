@@ -106,5 +106,8 @@ node app.js or nodemon app.js
 + mysql2: v2.1.0
 + sequelize: v6.3.5
 + sequelize-cli: v6.2.0
++ sequelize-cli: v6.2.0
++ passport-facebook": "^3.0.0"
++ passport-jwt": "^4.0.0",
 
 
