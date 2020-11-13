@@ -28,7 +28,7 @@ let restService = {
         let prev = page - 1 < 1 ? 1 : page - 1
         let next = page + 1 > pages ? pages : page + 1
         // clean up restaurant data
-        const data = result.rows.map(r => ({
+        const data = result.rows.map(r => ({ //rows是findandcountall 的用法 r代表所有餐廳的物件
           ...r.dataValues,
           description: r.dataValues.description.substring(0, 50),
           isFavorited: req.user.FavoritedRestaurants.map(d => d.id).includes(r.id), //true 或是false
@@ -55,14 +55,12 @@ let restService = {
   getTopRest: (req, res, callback) => {
     // 撈出所有 User 與 followers 資料
     return Restaurant.findAll({
-
       include: [
         Category,
         { model: User, as: 'FavoritedUsers' },
         { model: Comment, include: [User] }
       ]
     }).then(restaurants => {
-
       // 整理 users 資料
       restaurants = restaurants.map(restaurant => ({
         ...restaurant.dataValues,
@@ -72,7 +70,7 @@ let restService = {
         // 計算FAVORITE過幾次
         favCount: restaurant.FavoritedUsers.length,
 
-        isfaved: restaurant.FavoritedUsers.map(r => r.id).includes(req.user.id)
+        isFavorited: req.user.FavoritedRestaurants.map(r => r.id).includes(restaurant.id)
       }))
       // 依追蹤者人數排序清單
       // restaurants = restaurants.sort((a, b) => b.favCount - a.favCount).filter((_, index) => index < 10) 舊寫法

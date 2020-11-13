@@ -51,6 +51,39 @@ app.use((req, res, next) => {
 
 app.use('/upload', express.static(__dirname + '/upload'))
 
+
+
+// // KEVIN
+// app.use((req, res, next) => {
+//   let name = 'Kevin'
+//   req.name = name
+//   next()
+// })
+// // JOHN
+// app.post('/me', (req, res, next) => {
+//   let name = 'John'
+//   req.name = name
+//   next()
+// })
+// // JIMMY
+// // app.use('*', (req, res, next) => {
+// //   let name = 'Jimmy'
+// //   req.name = name
+// //   next()
+// // })
+// // MARY
+// // app.get('/me', (req, res, next) => {
+// //   let name = 'Mary'
+// //   req.name = name
+// //   next()
+// // })
+
+// app.use(function (req, res, next) {
+//   res.json({
+//     answer: req.name
+//   })
+// })
+
 app.listen(port, () => {
   console.log(`Example all listening on port ${port}!`)
 })
