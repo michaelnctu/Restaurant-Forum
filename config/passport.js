@@ -14,7 +14,7 @@ passport.use(new Localstrategy(
   },
   // authenticate user
   (req, username, password, cb) => {
-    User.findOne({ where: { email: username } }).then(user => {
+    User.findOne({ where: { email: username } }).then(user => {  //從資料庫找尋有沒有這筆資料
       if (!user) return cb(null, false, req.flash('error_messages', '帳號或密碼輸入錯誤'))
       if (!bcrypt.compareSync(password, user.password)) return cb(null, false, req.flash('error_messages', '帳號或密碼輸入錯誤！'))
       return cb(null, user)
@@ -58,10 +58,10 @@ passport.use(new FacebookStrategy({
 
 
 // serialize and deserialize user
-passport.serializeUser((user, cb) => {
+passport.serializeUser((user, cb) => { //序列化, 只存有user id
   cb(null, user.id)
 })
-passport.deserializeUser((id, cb) => {
+passport.deserializeUser((id, cb) => { //反序列化, 就是透過user id把整個user物件實例拿出來
   User.findByPk(id, {
     include: [
       { model: Restaurant, as: 'FavoritedRestaurants' },

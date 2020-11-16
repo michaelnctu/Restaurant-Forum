@@ -1,6 +1,6 @@
 'use strict';
 const bcrypt = require('bcryptjs')
-const faker = require('faker')
+const faker = require('faker') //因為餐廳眾多 我想用faker假資料產生多筆 然後放入資料庫
 
 module.exports = {
   up: (queryInterface, Sequelize) => {

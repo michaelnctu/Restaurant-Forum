@@ -47,7 +47,7 @@ const adminService = {
       callback({ status: 'error', message: "name didn't exist" })
     }
 
-    const { file } = req //const file = req.file
+    const { file } = req //const file = req.file 解構賦值 (destructuring)」，主要作用是從 object 取出屬性值，並且同時宣告與屬性同名的變數
     if (file) {
 
       imgur.setClientID(IMGUR_CLIENT_ID)
@@ -97,7 +97,7 @@ const adminService = {
               address: req.body.address,
               opening_hours: req.body.opening_hours,
               description: req.body.description,
-              image: file ? img.data.link : restaurant.image,
+              image: file ? img.data.link : restaurant.image,   //條件 ? 值1 : 值2 如果條件為true 運算值回傳值1 否則回傳值2
               CategoryId: req.body.CategoryId
             })
               .then((restaurant) => {

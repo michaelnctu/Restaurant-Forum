@@ -41,8 +41,8 @@ app.use(methodOverride('_method'))
 
 app.use((req, res, next) => {
   res.locals.success_messages = req.flash('success_messages')
-  res.locals.error_messages = req.flash('error_messages')
-  res.locals.user = req.user
+  res.locals.error_messages = req.flash('error_messages')  //view 專用的 res.locals，只要把資料放進 res.locals，就可以讓 View 也能存取到。
+  res.locals.user = req.user //Passport 會回傳 user，因此我們可以透過 req.user 把這個 user 物件實例拿出來
   next()
 })
 
@@ -52,37 +52,6 @@ app.use((req, res, next) => {
 app.use('/upload', express.static(__dirname + '/upload'))
 
 
-
-// // KEVIN
-// app.use((req, res, next) => {
-//   let name = 'Kevin'
-//   req.name = name
-//   next()
-// })
-// // JOHN
-// app.post('/me', (req, res, next) => {
-//   let name = 'John'
-//   req.name = name
-//   next()
-// })
-// // JIMMY
-// // app.use('*', (req, res, next) => {
-// //   let name = 'Jimmy'
-// //   req.name = name
-// //   next()
-// // })
-// // MARY
-// // app.get('/me', (req, res, next) => {
-// //   let name = 'Mary'
-// //   req.name = name
-// //   next()
-// // })
-
-// app.use(function (req, res, next) {
-//   res.json({
-//     answer: req.name
-//   })
-// })
 
 app.listen(port, () => {
   console.log(`Example all listening on port ${port}!`)
@@ -111,5 +80,6 @@ Handlebars.registerHelper('modalPop', function (admin) {
 
 })
 
-require('./routes')(app) // 把 passport 傳入 routes
+require('./routes')(app) //it basically means like this var func = require('./app/routes.js'); func(app);
+
 
