@@ -117,8 +117,8 @@ let userController = {
         return res.status(401).json({ status: 'error', message: 'passwords did not match' })
       }
       // 簽發 token
-      var payload = { id: user.id }
-      var token = jwt.sign(payload, process.env.JWT_SECRET)
+      var payload = { id: user.id } //我們想要token打包的資訊
+      var token = jwt.sign(payload, process.env.JWT_SECRET) //自己設定的金鑰
       return res.json({
         status: 'success',
         message: 'ok',

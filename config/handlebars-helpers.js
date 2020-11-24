@@ -13,7 +13,7 @@ module.exports = {
     if (v1 === v2) { return '(yourself)' }
   },
 
-  moment: function (a) {
+  moment: function (a) {  //用於留言距離現在的時間差  
     return moment(a).fromNow()
   }
 
