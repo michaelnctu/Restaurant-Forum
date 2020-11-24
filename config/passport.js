@@ -29,12 +29,13 @@ const FacebookStrategy = require('passport-facebook').Strategy
 passport.use(new FacebookStrategy({
   clientID: process.env.FACEBOOK_ID,
   clientSecret: process.env.FACEBOOK_SECRET,
-  callbackURL: "http://localhost:3000/auth/facebook/callback",
+  // callbackURL: "http://localhost:3000/auth/facebook/callback", //用戶端 OAuth 設定的重新導向 URI
+  callbackURL: "https://salty-oasis-94184.herokuapp.com/auth/facebook/callback",
   profileFields: ['email', 'displayName']
 },
   (accessToken, refreshToken, profile, done) => {
 
-    const { name, email } = profile._json
+    const { name, email } = profile._jsony
     User.findOne({ where: { email: profile._json.email } })
       .then(user => {
         if (user) return done(null, user)
