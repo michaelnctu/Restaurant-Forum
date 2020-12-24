@@ -8,6 +8,7 @@ const userController = require('../controllers/api/userController.js')
 const adminController = require('../controllers/api/adminController.js')
 const categoryController = require('../controllers/api/categoryController.js')
 const commentController = require('../controllers/api/commentController.js')
+const restController = require('../controllers/api/restController.js')
 const passport = require('../config/passport')
 
 const authenticated = passport.authenticate('jwt', { session: false })
@@ -20,6 +21,9 @@ const authenticatedAdmin = (req, res, next) => {
     return res.json({ status: 'error', message: 'permission denied' })
   }
 }
+
+
+router.get('/restaurants', authenticated, restController.getRestaurants)
 
 //categories
 router.get('/admin/categories', authenticated, authenticatedAdmin, categoryController.getCategories)
