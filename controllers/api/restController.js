@@ -1,6 +1,8 @@
 const commentService = require('../../services/restService.js')
 
 
+const restService = require('../../services/restService.js')
+
 let restController = {
 
   getRestaurants: (req, res) => {

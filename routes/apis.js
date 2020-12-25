@@ -22,8 +22,13 @@ const authenticatedAdmin = (req, res, next) => {
   }
 }
 
-
+//restaurants
+router.get('/', authenticated, (req, res) => res.redirect('/api/restaurants'))
 router.get('/restaurants', authenticated, restController.getRestaurants)
+router.get('/restaurants/feeds', authenticated, restController.getFeeds)
+router.get('/restaurants/top', authenticated, restController.getTopRest)
+router.get('/restaurants/:id', authenticated, restController.getRestaurant)
+router.get('/restaurants/:id/dashboard', authenticated, restController.getDashboard)
 
 //categories
 router.get('/admin/categories', authenticated, authenticatedAdmin, categoryController.getCategories)
@@ -37,7 +42,7 @@ router.put('/admin/users/:id', authenticatedAdmin, adminController.putUsers)
 
 
 //admin restaurants
-router.get('/admin/restaurants', authenticated, authenticatedAdmin, adminController.getRestaurants)
+router.get('/admin/restaurants', adminController.getRestaurants)
 router.get('/admin/restaurants/:id', authenticated, authenticatedAdmin, adminController.getRestaurant)
 router.post('/admin/restaurants', authenticated, authenticatedAdmin, upload.single('image'), adminController.postRestaurant)
 router.put('/admin/restaurants/:id', authenticated, authenticatedAdmin, upload.single('image'), adminController.putRestaurant)
