@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const handlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
 const port = process.env.PORT || 3000
@@ -7,8 +8,6 @@ const Handlebars = require('handlebars')
 const flash = require('connect-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
-
-
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 
 if (process.env.NODE_ENV !== 'production') {
@@ -16,6 +15,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const passport = require('./config/passport')
 
+
+app.use(cors())
 
 
 app.engine('handlebars', handlebars
