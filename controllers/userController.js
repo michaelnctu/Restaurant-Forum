@@ -6,11 +6,7 @@ const fs = require('fs')
 const IMGUR_CLIENT_ID = process.env.IMGUR_CLIENT_ID
 //  process.env.IMGUR_CLIENT_ID 'fd721781137eed3'
 const User = db.User
-const Comment = db.Comment
-const Restaurant = db.Restaurant
-const Favorite = db.Favorite
-const Followship = db.Followship
-const Like = db.Like
+
 const userService = require('../services/userService.js')
 
 
