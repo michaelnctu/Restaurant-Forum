@@ -5,7 +5,7 @@ module.exports = {
 
     await queryInterface.addColumn('Categories', 'image', {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
     })
     /**
      * Add altering commands here.
