@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     opening_hours: DataTypes.STRING,
     description: DataTypes.TEXT,
     image: DataTypes.STRING,
+    latitude: DataTypes.NUMBER,
+    longitude: DataTypes.NUMBER,
     viewCounts: DataTypes.INTEGER
   }, {});
 
