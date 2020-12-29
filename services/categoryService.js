@@ -11,6 +11,7 @@ const categoryService = {
       raw: true,
       nest: true
     }).then(categories => {
+      console.log('categories', categories)
       if (req.params.id) {
         Category.findByPk(req.params.id)
           .then((category) => {
