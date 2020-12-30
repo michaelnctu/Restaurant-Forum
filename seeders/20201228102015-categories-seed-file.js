@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('Categories',
-      [{ '中式料理': 'https://images.unsplash.com/photo-1523905330026-b8bd1f5f320e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1358&q=80' }
+      [{ '中式料理': 'https://images.unsplash.com/photo-1563245370-63ffc97abdbd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80' }
         , { '日本料理': 'https://images.unsplash.com/photo-1519984388953-d2406bc725e1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1949&q=80' }
         , { '義大利料理': 'https://images.unsplash.com/photo-1533777324565-a040eb52facd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1321&q=80' }
         , {
