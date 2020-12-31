@@ -68,6 +68,16 @@ let userController = {
     })
   },
 
+  getCurrentUser: (req, res) => {
+    return res.json({
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email,
+      image: req.user.image,
+      isAdmin: req.user.isAdmin
+    })
+  },
+
 
 
   //A19-Q2
