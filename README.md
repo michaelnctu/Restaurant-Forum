@@ -6,11 +6,11 @@ Heroku: https://salty-oasis-94184.herokuapp.com/restaurants
 
 首頁
 
-![image](https://user-images.githubusercontent.com/65526955/98906652-734f5380-24f8-11eb-807e-ce8215f6eaf6.png)
+![image](https://user-images.githubusercontent.com/65526955/103441801-46fbbc00-4c8b-11eb-902d-9ca7d6f2969a.png)
 
 餐廳簡介 (圖片為隨機產生的random資料)
 
-![image](https://user-images.githubusercontent.com/65526955/98907225-74cd4b80-24f9-11eb-9935-e87c80cdf0ab.png)
+![image](https://user-images.githubusercontent.com/65526955/103441691-a4dbd400-4c8a-11eb-9875-85248997494c.png)
 
 美食達人
 
